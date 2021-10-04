@@ -1,0 +1,24 @@
+Time Complexity - olog(n) + o(k)
+Space complexity - o(1)
+
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        vector<int> result;
+        int low = 0,high = arr.size()-k;
+        while(low<high) {
+            int mid = low + (high-low)/2;
+            int Sdist = x - arr[mid];
+            int Edist = arr[mid+k] - x;
+            if(Sdist>Edist) {
+                low = mid+1;
+            }else {
+                high = mid;
+            }
+        }
+        for(int i= low;i<low+k;i++) {
+            result.push_back(arr[i]);
+        }
+        return result;
+    }
+};
